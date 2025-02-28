@@ -389,6 +389,8 @@ class DataPreProcessor:
     ) -> Union[Dataset, IterableDataset]:
         train_dataset = None
         state = PartialState()
+
+        # The main_process_first context ensures that the main process runs first
         with state.main_process_first():
             train_dataset = self._process_dataset_configs(dataset_configs, **kwargs)
 
